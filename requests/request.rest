@@ -1,0 +1,27 @@
+GET http://127.0.0.1:3000/todos
+
+###
+
+POST http://127.0.0.1:3000/todos
+Content-Type: application/json
+
+{
+    "todo": "go for a walk"
+}
+
+###
+
+GET http://127.0.0.1:3000/todos/1
+
+###
+
+PATCH http://127.0.0.1:3000/todos/8
+Content-Type: application/json
+
+{
+    "todo": "drink 2L water"
+}
+
+###
+
+DELETE http://127.0.0.1:3000/todos/6

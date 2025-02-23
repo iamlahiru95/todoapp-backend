@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, Todo } from '@prisma/client';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaClientService } from 'src/prisma/prisma-client.service';
 
 @Injectable()
 export class TodosService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private prismaClientService: PrismaClientService) {}
 
   /**
-   * 
-   * @param data 
-   * @returns 
+   *
+   * @param data
+   * @returns
    */
   async createTodo(data: Prisma.TodoCreateInput) {
-    return this.prismaService.todo.create({ data });
+    return this.prismaClientService.todo.create({ data });
   }
 
   /**
@@ -20,7 +20,7 @@ export class TodosService {
    * @returns
    */
   async getAllTodos(): Promise<Todo[]> {
-    return this.prismaService.todo.findMany();
+    return this.prismaClientService.todo.findMany();
   }
 
   /**
@@ -31,7 +31,7 @@ export class TodosService {
   async getATodo(
     todoWhereUniqueInput: Prisma.TodoWhereUniqueInput,
   ): Promise<Todo> {
-    return this.prismaService.todo.findUnique({
+    return this.prismaClientService.todo.findUnique({
       where: todoWhereUniqueInput,
     });
   }
@@ -46,7 +46,7 @@ export class TodosService {
     data: Prisma.TodoUpdateInput;
   }): Promise<Todo> {
     const { where, data } = params;
-    return this.prismaService.todo.update({ where, data });
+    return this.prismaClientService.todo.update({ where, data });
   }
 
   /**
@@ -55,6 +55,6 @@ export class TodosService {
    * @returns
    */
   async deleteTodo(where: Prisma.TodoWhereUniqueInput): Promise<Todo> {
-    return this.prismaService.todo.delete({ where });
+    return this.prismaClientService.todo.delete({ where });
   }
 }
